@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ariston2mqtt
+  name: ariston2mqtt
+spec:
+  selector:
+    matchLabels:
+      app: ariston2mqtt
+  template:
+    metadata:
+      labels:
+        app: ariston2mqtt
+    spec:
+      securityContext:
+        fsGroup: 472
+        supplementalGroups:
+          - 0
+      containers:
+        - name: ariston2mqtt
+          image: ghcr.io/rbartl/ariston2mqtt-py:0.1
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: "GF_RENDERING_SERVER_URL"
+            value: "http://grafana-renderer.grafanahome.svc.cluster.local:8081/render"
+          - name: USER # ENV variable name
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: user
+          - name: PASSWORD # ENV variable name
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: password
+          - name: GWID # ENV variable name
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: gwid
+          - name: MQTTSERVER
+            value: mosquitto.iot.svc.cluster.local
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
