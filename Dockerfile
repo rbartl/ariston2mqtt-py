@@ -1,5 +1,10 @@
 FROM python:3.12
 
+
+RUN apt remove -y  libtiff*
+RUN pip install --upgrade pip
+
+
 WORKDIR /app
 
 COPY requirements.txt .
