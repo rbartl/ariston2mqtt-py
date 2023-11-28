@@ -46,9 +46,9 @@ Once the image is built, you can run a container from this image. The bridge run
 ```sh
 docker run -d \
   --name ariston2mqtt \
-  -e MQTT_SERVER="MQTT_SERVER_ADDRESS" \
-  -e MQTT_USER="MQTT_USER" \
-  -e MQTT_PASSWORD="MQTT_PASSWORD" \
+  -e MQTTSERVER="MQTT_SERVER_ADDRESS" \
+  -e MQTTUSER="MQTT_USER" \
+  -e MQTTPASSWORD="MQTT_PASSWORD" \
   -e USER="YOUR_EMAIL" \
   -e PASSWORD="YOUR_PASSWORD" \
   -e GWID="GATEWAY_ID" \
