@@ -41,7 +41,7 @@ MQTT_TOPIC_PUBLISH = 'heater/status'
 MQTT_TOPIC_PREFIX= 'heater/status/'
 MQTT_TOPIC_SUBSCRIBE_PREFIX = 'heater/'
 MQTT_TOPIC_SUBSCRIBE = 'heater/comfort_temperature'
-UPDATE_INTERVAL = 600 # Update heater state every 60 seconds
+UPDATE_INTERVAL = 1200 # Update heater state every 60 seconds
 
 if args.update_interval:
     UPDATE_INTERVAL = int(args.update_interval)
